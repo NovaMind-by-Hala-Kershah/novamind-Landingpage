@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Mind — Your Career, Elevated</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-50: #fdf2fb;
+    --purple-100: #f9e0f4;
+    --purple-200: #f0c0e6;
+    --purple-300: #d98dc8;
+    --purple-400: #b94da3;
+    --purple-500: #a12d8a;
+    --purple-600: #891574;
+    --purple-700: #6e1060;
+    --purple-800: #5a0d4f;
+    --purple-900: #430a3b;
+    --neutral-50: #fafafa;
+    --neutral-100: #f5f5f5;
+    --neutral-200: #e5e5e5;
+    --neutral-300: #d4d4d4;
+    --neutral-400: #a3a3a3;
+    --neutral-500: #737373;
+    --neutral-600: #525252;
+    --neutral-700: #404040;
+    --neutral-800: #262626;
+    --neutral-900: #171717;
+    --white: #ffffff;
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Outfit', sans-serif;
+    --font-arabic: 'Cairo', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--white);
+    color: var(--neutral-800);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Noise overlay ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.018;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.25rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.85);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 1.35rem;
+    letter-spacing: -0.5px;
+    color: var(--neutral-900);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--neutral-500);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.25s;
+  }
+
+  .nav-links a:hover { color: var(--purple-600); }
+
+  .nav-cta {
+    background: var(--neutral-900) !important;
+    color: var(--white) !important;
+    padding: 0.6rem 1.5rem !important;
+    border-radius: 100px !important;
+    font-size: 0.8rem !important;
+    transition: all 0.3s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--purple-700) !important;
+    transform: translateY(-1px);
+  }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, var(--purple-100) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(137,21,116,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(137,21,116,0.05) 0%, transparent 60%);
+    z-index: 0;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1.2rem;
+    background: var(--purple-50);
+    border: 1px solid var(--purple-200);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--purple-700);
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-badge .arrow { transition: transform 0.3s; }
+  .hero-badge:hover .arrow { transform: translateX(-4px); }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--neutral-900);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.15s ease forwards;
+    opacity: 0;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--purple-600);
+    position: relative;
+  }
+
+  .hero h1 em::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--purple-300);
+    border-radius: 2px;
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--neutral-500);
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+    animation: fadeUp 0.8s 0.3s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease forwards;
+    opacity: 0;
+  }
+
+  .btn-primary {
+    background: var(--purple-600);
+    color: var(--white);
+    padding: 0.9rem 2.2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-primary:hover {
+    background: var(--purple-700);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(137,21,116,0.25);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--neutral-700);
+    padding: 0.9rem 2.2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    border: 1.5px solid var(--neutral-200);
+    cursor: pointer;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--purple-300);
+    color: var(--purple-700);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--neutral-400);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: fadeUp 0.8s 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--purple-300), transparent);
+    animation: scroll-pulse 2s ease infinite;
+  }
+
+  @keyframes scroll-pulse {
+    0%, 100% { opacity: 1; height: 40px; }
+    50% { opacity: 0.4; height: 25px; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Section base ── */
+  section {
+    padding: 7rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--purple-500);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--neutral-900);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .section-desc {
+    font-size: 1.05rem;
+    color: var(--neutral-500);
+    line-height: 1.7;
+    max-width: 550px;
+    font-weight: 300;
+    margin-bottom: 3.5rem;
+  }
+
+  /* ── Resources / Guides Section ── */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .resource-card {
+    background: var(--white);
+    border: 1px solid var(--neutral-100);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .resource-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple-400), var(--purple-600));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .resource-card:hover::before { transform: scaleX(1); }
+
+  .resource-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+    border-color: var(--purple-100);
+  }
+
+  .resource-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.3rem;
+  }
+
+  .resource-icon.purple { background: var(--purple-50); color: var(--purple-600); }
+  .resource-icon.dark { background: var(--neutral-100); color: var(--neutral-700); }
+
+  .resource-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--neutral-800);
+  }
+
+  .resource-card p {
+    font-size: 0.9rem;
+    color: var(--neutral-500);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .resource-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--purple-500);
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    background: var(--purple-50);
+    border-radius: 100px;
+  }
+
+  /* ── Workshops Section ── */
+  .workshops-section {
+    background: var(--neutral-50);
+    border-radius: 24px;
+    padding: 4rem !important;
+    margin: 0 auto 0;
+    max-width: 1200px;
+  }
+
+  .workshop-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .workshop-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid transparent;
+    transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .workshop-item:hover {
+    border-color: var(--purple-200);
+    transform: translateX(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.04);
+  }
+
+  .workshop-date {
+    text-align: center;
+  }
+
+  .workshop-date .day {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--purple-600);
+    line-height: 1;
+  }
+
+  .workshop-date .month {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--neutral-400);
+    font-weight: 500;
+  }
+
+  .workshop-info h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--neutral-800);
+    margin-bottom: 0.3rem;
+  }
+
+  .workshop-info p {
+    font-size: 0.85rem;
+    color: var(--neutral-400);
+    font-weight: 300;
+  }
+
+  .workshop-meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .meta-tag {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 100px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  .meta-tag.online { background: var(--purple-50); color: var(--purple-600); }
+  .meta-tag.seats { background: var(--neutral-100); color: var(--neutral-600); }
+
+  .workshop-cta {
+    font-size: 0.8rem;
+    padding: 0.55rem 1.3rem;
+    border-radius: 100px;
+    background: var(--neutral-900);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+
+  .workshop-cta:hover {
+    background: var(--purple-700);
+    transform: scale(1.03);
+  }
+
+  /* ── Calendar / Booking Section ── */
+  .calendar-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .calendar-visual {
+    background: var(--white);
+    border: 1px solid var(--neutral-100);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.04);
+  }
+
+  .cal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .cal-header h4 {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--neutral-800);
+  }
+
+  .cal-nav {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .cal-nav button {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--neutral-200);
+    background: var(--white);
+    cursor: pointer;
+    color: var(--neutral-500);
+    font-size: 0.8rem;
+    transition: all 0.2s;
+  }
+
+  .cal-nav button:hover {
+    border-color: var(--purple-300);
+    color: var(--purple-600);
+  }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+  }
+
+  .cal-day-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--neutral-400);
+    padding: 0.5rem 0;
+    font-weight: 500;
+  }
+
+  .cal-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--neutral-600);
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  .cal-day:hover {
+    background: var(--purple-50);
+    color: var(--purple-700);
+  }
+
+  .cal-day.today {
+    background: var(--purple-600);
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .cal-day.has-event::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--purple-400);
+  }
+
+  .cal-day.today.has-event::after { background: var(--white); }
+  .cal-day.empty { cursor: default; }
+  .cal-day.empty:hover { background: transparent; }
+
+  .booking-slots {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--neutral-100);
+  }
+
+  .booking-slots h5 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--neutral-400);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+
+  .slots {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .slot {
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--neutral-200);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    color: var(--neutral-600);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 400;
+  }
+
+  .slot:hover, .slot.active {
+    border-color: var(--purple-400);
+    background: var(--purple-50);
+    color: var(--purple-700);
+  }
+
+  .slot.active {
+    background: var(--purple-600);
+    color: var(--white);
+    border-color: var(--purple-600);
+  }
+
+  /* ── Contact / CTA Section ── */
+  .cta-section {
+    text-align: center;
+    padding: 6rem 2rem;
+    position: relative;
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 60% at 50% 100%, var(--purple-50) 0%, transparent 70%);
+    z-index: 0;
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-section .section-title {
+    margin-bottom: 1rem;
+  }
+
+  .cta-section .section-desc {
+    margin: 0 auto 2.5rem;
+    max-width: 480px;
+  }
+
+  .contact-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .contact-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.4rem;
+    background: var(--white);
+    border: 1px solid var(--neutral-200);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    color: var(--neutral-600);
+    text-decoration: none;
+    transition: all 0.3s;
+    font-weight: 400;
+  }
+
+  .contact-chip:hover {
+    border-color: var(--purple-300);
+    color: var(--purple-700);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  }
+
+  /* ── Footer ── */
+  footer {
+    padding: 3rem;
+    text-align: center;
+    border-top: 1px solid var(--neutral-100);
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    color: var(--neutral-400);
+    font-weight: 300;
+  }
+
+  footer .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  footer .footer-links a {
+    font-size: 0.8rem;
+    color: var(--neutral-400);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer .footer-links a:hover { color: var(--purple-600); }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .workshops-section { padding: 2rem !important; }
+    .workshop-item {
+      grid-template-columns: 60px 1fr;
+      gap: 1rem;
+    }
+    .workshop-meta { display: none; }
+    .calendar-section {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .hero h1 { font-size: 2.5rem; }
+  }
+
+  /* ── Scroll animations ── */
+  .reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="36" height="32" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#6e1060"/>
+          <stop offset="100%" stop-color="#b94da3"/>
+        </linearGradient>
+      </defs>
+      <path d="M50 5 L5 85 H35 L50 55 L65 85 H95 Z" fill="url(#logoGrad)"/>
+      <path d="M30 70 L50 30 L70 70 H55 L50 58 L45 70 Z" fill="url(#logoGrad)" opacity="0.6"/>
+    </svg>
+    NovaMind
+  </a>
+  <ul class="nav-links">
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="#workshops">Workshops</a></li>
+    <li><a href="#booking">Book a Session</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span>✦</span> Your career growth partner <span class="arrow">←</span>
+    </div>
+    <h1>Unlock Your <em>Potential</em></h1>
+    <p class="hero-sub">
+      Expert-crafted guides, CV templates, and hands-on workshops designed to accelerate your professional journey.
+    </p>
+    <div class="hero-actions">
+      <a href="#resources" class="btn-primary">Explore Resources ↓</a>
+      <a href="#booking" class="btn-secondary">Book a Session</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── Resources / Guides & Templates ── -->
+<section id="resources">
+  <div class="reveal">
+    <p class="section-label">Resources</p>
+    <h2 class="section-title">Guides & Templates</h2>
+    <p class="section-desc">
+      Free and premium resources crafted to help you stand out in today's competitive market.
+    </p>
+  </div>
+  <div class="resources-grid">
+    <a href="https://drive.google.com/drive/folders/11Evrz2bDiT92xECfaVJl4S-sUgiN-zW4?usp=sharing" target="_blank" class="resource-card reveal reveal-delay-1">
+      <div class="resource-icon purple">📖</div>
+      <h3>Career Transformation Guide</h3>
+      <p>A step-by-step playbook for navigating career pivots with clarity and confidence.</p>
+      <span class="resource-tag">Free Guide</span>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1ldDjoHxRWjIVIVT7zJ_uE5iMYS_q4lI1?usp=sharing" target="_blank" class="resource-card reveal reveal-delay-2">
+      <div class="resource-icon dark">📄</div>
+      <h3>Professional CV Templates</h3>
+      <p>ATS-friendly, beautifully designed templates that get you noticed by recruiters.</p>
+      <span class="resource-tag">Free Download</span>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1nFqWUM2pYahXBpqSp5tX5AsNds_jxqGm?usp=sharing" target="_blank" class="resource-card reveal reveal-delay-3">
+      <div class="resource-icon purple">💡</div>
+      <h3>Interview Prep Kit</h3>
+      <p>Common questions, frameworks for answering, and confidence-building exercises.</p>
+      <span class="resource-tag">Free Guide</span>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1Mi6uKBYwTBeQjAOy3-x_wtZGkSCdtPjp?usp=sharing" target="_blank" class="resource-card reveal reveal-delay-1">
+      <div class="resource-icon dark">📚</div>
+      <h3>Books & Resources</h3>
+      <p>Curated reading lists and resources to help you grow professionally and personally.</p>
+      <span class="resource-tag">Resources</span>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1BY1SLQtxBrjEB8pv0idCkicc38BVNmd3?usp=sharing" target="_blank" class="resource-card reveal reveal-delay-2">
+      <div class="resource-icon purple">📝</div>
+      <h3>Formal Document Templates</h3>
+      <p>Ready-to-use templates for cover letters, HR letters, and other professional documents.</p>
+      <span class="resource-tag">Templates</span>
+    </a>
+    <a href="https://drive.google.com/drive/folders/10aO-rnw_z4-tsyRjJUNDxHq0ac3RFWk3?usp=sharing" target="_blank" class="resource-card reveal reveal-delay-3">
+      <div class="resource-icon dark">📊</div>
+      <h3>Salary Negotiation Toolkit</h3>
+      <p>Scripts, research frameworks, and strategies to confidently negotiate your worth.</p>
+      <span class="resource-tag">Free Guide</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── Workshops ── -->
+<section id="workshops" class="workshops-section">
+  <div class="reveal">
+    <p class="section-label">Upcoming</p>
+    <h2 class="section-title">Workshops & Events</h2>
+    <p class="section-desc">
+      Live, interactive sessions where you learn by doing — not just watching.
+    </p>
+  </div>
+  <div class="workshop-list">
+    <a href="#" class="workshop-item reveal reveal-delay-1">
+      <div class="workshop-date">
+        <div class="day">18</div>
+        <div class="month">Apr</div>
+      </div>
+      <div class="workshop-info">
+        <h3>CV Makeover Workshop</h3>
+        <p>Transform your CV from average to outstanding in 90 minutes</p>
+      </div>
+      <div class="workshop-meta">
+        <span class="meta-tag online">Online</span>
+        <span class="meta-tag seats">12 seats left</span>
+        <span class="workshop-cta">Register →</span>
+      </div>
+    </a>
+    <a href="#" class="workshop-item reveal reveal-delay-2">
+      <div class="workshop-date">
+        <div class="day">25</div>
+        <div class="month">Apr</div>
+      </div>
+      <div class="workshop-info">
+        <h3>LinkedIn Strategy Masterclass</h3>
+        <p>Build a profile that attracts recruiters and industry leaders</p>
+      </div>
+      <div class="workshop-meta">
+        <span class="meta-tag online">Online</span>
+        <span class="meta-tag seats">8 seats left</span>
+        <span class="workshop-cta">Register →</span>
+      </div>
+    </a>
+    <a href="#" class="workshop-item reveal reveal-delay-3">
+      <div class="workshop-date">
+        <div class="day">03</div>
+        <div class="month">May</div>
+      </div>
+      <div class="workshop-info">
+        <h3>Interview Confidence Bootcamp</h3>
+        <p>Practice real scenarios with expert feedback and peer support</p>
+      </div>
+      <div class="workshop-meta">
+        <span class="meta-tag online">Online</span>
+        <span class="meta-tag seats">15 seats left</span>
+        <span class="workshop-cta">Register →</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ── Calendar / Booking ── -->
+<section id="booking">
+  <div class="calendar-section">
+    <div class="reveal">
+      <p class="section-label">Book</p>
+      <h2 class="section-title">Schedule a 1:1 Session</h2>
+      <p class="section-desc">
+        Get personalized career guidance tailored to your unique situation. Pick a date and time that works for you.
+      </p>
+      <a href="#" class="btn-primary" onclick="alert('Booking link coming soon!'); return false;">Book a Session — Coming Soon →</a>
+    </div>
+    <div class="calendar-visual reveal reveal-delay-2">
+      <div class="cal-header">
+        <h4>April 2026</h4>
+        <div class="cal-nav">
+          <button>‹</button>
+          <button>›</button>
+        </div>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-day-label">Sun</div>
+        <div class="cal-day-label">Mon</div>
+        <div class="cal-day-label">Tue</div>
+        <div class="cal-day-label">Wed</div>
+        <div class="cal-day-label">Thu</div>
+        <div class="cal-day-label">Fri</div>
+        <div class="cal-day-label">Sat</div>
+
+        <div class="cal-day empty"></div>
+        <div class="cal-day empty"></div>
+        <div class="cal-day empty"></div>
+        <div class="cal-day">1</div>
+        <div class="cal-day has-event">2</div>
+        <div class="cal-day">3</div>
+        <div class="cal-day">4</div>
+
+        <div class="cal-day">5</div>
+        <div class="cal-day has-event">6</div>
+        <div class="cal-day">7</div>
+        <div class="cal-day">8</div>
+        <div class="cal-day has-event">9</div>
+        <div class="cal-day">10</div>
+        <div class="cal-day has-event">11</div>
+
+        <div class="cal-day">12</div>
+        <div class="cal-day has-event">13</div>
+        <div class="cal-day">14</div>
+        <div class="cal-day has-event">15</div>
+        <div class="cal-day">16</div>
+        <div class="cal-day">17</div>
+        <div class="cal-day has-event">18</div>
+
+        <div class="cal-day">19</div>
+        <div class="cal-day">20</div>
+        <div class="cal-day has-event">21</div>
+        <div class="cal-day">22</div>
+        <div class="cal-day has-event">23</div>
+        <div class="cal-day">24</div>
+        <div class="cal-day has-event">25</div>
+
+        <div class="cal-day has-event">26</div>
+        <div class="cal-day">27</div>
+        <div class="cal-day has-event">28</div>
+        <div class="cal-day">29</div>
+        <div class="cal-day today has-event">30</div>
+        <div class="cal-day empty"></div>
+        <div class="cal-day empty"></div>
+      </div>
+      <div class="booking-slots">
+        <h5>Available Slots — Apr 30</h5>
+        <div class="slots">
+          <div class="slot">10:00 AM</div>
+          <div class="slot active">12:00 PM</div>
+          <div class="slot">2:00 PM</div>
+          <div class="slot">4:30 PM</div>
+          <div class="slot">6:00 PM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact CTA ── -->
+<section id="contact" class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="cta-content reveal">
+    <p class="section-label">Let's Connect</p>
+    <h2 class="section-title">Ready to Level Up?</h2>
+    <p class="section-desc">
+      Whether you have questions or want to collaborate, we'd love to hear from you.
+    </p>
+    <a href="mailto:info@novamind.org" class="btn-primary">Send a Message</a>
+    <div class="contact-row">
+      <a href="mailto:info@novamind.org" class="contact-chip">
+        <span>📧</span> Email
+      </a>
+      <a href="https://www.instagram.com/novamind_by_hala_kershah/" target="_blank" class="contact-chip">
+        <span>📱</span> Instagram
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61578073088327" target="_blank" class="contact-chip">
+        <span>📘</span> Facebook
+      </a>
+      <a href="https://www.linkedin.com/in/novamind-by-hala-kershah-699142343/" target="_blank" class="contact-chip">
+        <span>💼</span> LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-links">
+    <a href="#resources">Resources</a>
+    <a href="#workshops">Workshops</a>
+    <a href="#booking">Booking</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p>© 2026 Nova Mind. All rights reserved.</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Slot selection
+  document.querySelectorAll('.slot').forEach(slot => {
+    slot.addEventListener('click', () => {
+      document.querySelectorAll('.slot').forEach(s => s.classList.remove('active'));
+      slot.classList.add('active');
+    });
+  });
+
+  // Calendar day selection
+  document.querySelectorAll('.cal-day:not(.empty):not(
